@@ -1,0 +1,80 @@
+#khongCoSanPham {
+	opacity: 0;
+	width: 0;
+	color: red;
+	font-size: 30px;
+	font-weight: bold;
+	height: 310px;
+}
+/* Home Product */
+	.homeproduct {
+		list-style-type: none;  
+	}
+
+	/* <li> trong homeproduct có class="sanPham" , khai báo trong classes.js */
+	.sanPham {
+		width: 238px;
+		border: 1px solid #eee;
+    	-webkit-transition-duration: .3s;
+    	     -o-transition-duration: .3s;
+    	        transition-duration: .3s;
+	}
+	.sanPham a {
+		display: block;
+		position: relative;
+		padding: 10px 0;
+		height: 310px;
+	}
+	.sanPham a .price span {
+	    display: inline-block;
+	    vertical-align: middle;
+	    font-size: 12px;
+	    text-decoration: line-through;
+	    margin-left: 5px;
+	    color: #222;
+	}
+	/* Name and image */
+		/* Hinh anh san pham */
+		.sanPham a img {
+			display: block;
+			margin: 15px auto;
+			-webkit-transition-duration: 0.2s;
+			     -o-transition-duration: 0.2s;
+			        transition-duration: 0.2s;
+			width: 200px;
+			height: 200px;
+		}
+		/* Di chuyen anh? len tren */
+		.sanPham a:hover > img {
+			margin: 5px auto 25px;
+		}
+		/* Ten san pham */
+		.sanPham h3 {
+			display: block;
+			padding: 0 10px;
+			color: #333;
+			line-height: 1.3em;
+			font-size: 15px;
+			font-weight: normal;
+		}
+		/* Hightlight ten san pham khi hover */
+		.sanPham a:hover h3 {
+			color: #288ad6;
+        }
+	/* ====== End Name and image ===== */
+
+	/* Price */
+		/* la div chua strong */
+		.sanPham .price {
+			display: block;
+			padding: 5px 10px 0px 10px;
+		}
+		/* strong la gia tien in dam */
+		.sanPham strong {
+		    display: inline-block;
+		    vertical-align: middle;
+		    overflow: hidden;
+		    font-size: 14px;
+		    color: #e10c00;
+		    line-height: 15px;
+		}
