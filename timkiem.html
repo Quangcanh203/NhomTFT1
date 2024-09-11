@@ -1,0 +1,67 @@
+ar adminInfo = [{
+    "username": "admin",
+    "pass": "adadad"
+}];
+
+function getListAdmin() {
+    return JSON.parse(window.localStorage.getItem('ListAdmin'));
+}
+
+function setListAdmin(l) {
+    window.localStorage.setItem('ListAdmin', JSON.stringify(l));
+}
+
+
+// Hàm khởi tạo, tất cả các trang đều cần
+function khoiTao() {
+    // get data từ localstorage
+    list_products = getListProducts() || list_products;
+    adminInfo = getListAdmin() || adminInfo;
+
+    setupEventTaiKhoan();
+    capNhat_ThongTin_CurrentUser();
+    addEventCloseAlertButton();
+}
+
+// ========= Các hàm liên quan tới danh sách sản phẩm =========
+// Localstorage cho dssp: 'ListProducts
+function setListProducts(newList) {
+    window.localStorage.setItem('ListProducts', JSON.stringify(newList));
+}
+
+function getListProducts() {
+    return JSON.parse(window.localStorage.getItem('ListProducts'));
+}
+
+function timKiemTheoTen(list, ten, soluong) {
+    var tempList = copyObject(list);
+    var result = [];
+    ten = ten.split(' ');
+
+    for (var sp of tempList) {
+        var correct = true;
+        for (var t of ten) {
+            if (sp.name.toUpperCase().indexOf(t.toUpperCase()) < 0) {
+                correct = false;
+                break;
+            }
+        }
+        if (correct) {
+            result.push(sp);
+        }
+    }
+
+    return result;
+}
+
+function timKiemTheoMa(list, ma) {
+    for (var l of list) {
+        if (l.masp == ma) return l;
+    }
+}
+
+// copy 1 object, do trong js ko có tham biến , tham trị rõ ràng
+// nên dùng bản copy để chắc chắn ko ảnh hưởng tới bản chính
+function copyObject(o) {
+    return JSON.parse(JSON.stringify(o));
+}
