@@ -1,0 +1,34 @@
+using DoAn.Models;
+using DoAn.Repository;
+using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace DoAn.Controllers
+{
+    public class OrderController : Controller
+    {
+        private readonly DataContext _dataContext;
+
+        public OrderController(DataContext context)
+        {
+            _dataContext = context;
+        }
+
+        // Phương thức hiển thị lịch sử thanh toán
+        public IActionResult CheckoutHistory()
+        {
+            var userName = User.Identity.Name;
+
+            // Lấy danh sách đơn hàng của người dùng hiện tại
+            var orders = _dataContext.Others
+                            .Where(o => o.UserName == userName)
+                            .OrderByDescending(o => o.CreateDate) // Sắp xếp theo thời gian tạo đơn hàng
+                            .ToList();
+
+            return View("CheckoutHistory", orders); // Chỉ định View "CheckoutHistory"
+
+        }
+
+    }
+}
