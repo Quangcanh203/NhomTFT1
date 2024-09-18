@@ -1,0 +1,47 @@
+@model IEnumerable<DoAn.Models.OrderModel>
+
+<div class="container mt-5">
+    <h2 class="text-center">Lịch sử Thanh Toán</h2>
+
+    @if (Model.Any())
+    {
+        <table class="table table-striped mt-4">
+            <thead>
+                <tr>
+                    <th>Mã đơn hàng</th>
+                    <th>Ngày thanh toán</th>
+                    <th>Trạng thái</th>
+                    <th>Tổng tiền</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model)
+                {
+                    <tr>
+                        <td>@order.OrderCode</td>
+                        <td>@order.CreateDate.ToString("dd/MM/yyyy")</td>
+                        <td>
+                            @if (order.Status == 1)
+                            {
+                                <span>Đang chờ xử lý</span>
+                            }
+                            else if (order.Status == 2)
+                            {
+                                <span>Đang giao hàng</span>
+                            }
+                            else if (order.Status == 3)
+                            {
+                                <span>Hoàn thành</span>
+                            }
+                        </td>
+                        <td>@String.Format("{0:0,0} VND", order.TotalAmount)</td> <!-- Giả sử bạn có TotalAmount -->
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p class="text-center">Bạn chưa có đơn hàng nào.</p>
+    }
+</div>
